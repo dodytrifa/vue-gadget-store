@@ -41,7 +41,7 @@ export default new Vuex.Store({
         })
     },
     addToCart (context, payload) {
-      // console.log(payload)
+      console.log(payload)
       axiosInit({
         url: '/cart',
         method: 'POST',
@@ -61,6 +61,28 @@ export default new Vuex.Store({
           console.log(err.response)
         })
     },
+    updateToCart (context, payload) {
+      // console.log(payload)
+      axiosInit({
+        url: '/cart',
+        method: 'POST',
+        headers: {
+          access_token: localStorage.getItem('access_token')
+        },
+        data: {
+          productId: payload.productId,
+          amount: payload.amount,
+          totalPrice: payload.totalPrice
+        }
+      })
+        .then(response => {
+          console.log(response)
+          context.dispatch('getCart')
+        })
+        .catch(err => {
+          console.log(err.response)
+        })
+    },
     getCart (context, payload) {
       axiosInit({
         url: '/cart',
@@ -70,7 +92,6 @@ export default new Vuex.Store({
         }
       })
         .then(response => {
-          console.log(response)
           context.commit('CHANGECART', response.data)
         })
         .catch(err => {

@@ -39,7 +39,7 @@ export default {
         password: this.password
       })
         .then(response => {
-          console.log(response.data)
+          // console.log(response.data)
           localStorage.setItem('access_token', response.data.access_token)
           this.$store.commit('CHANGEISLOGIN', true)
           this.$router.push('/showproducts')

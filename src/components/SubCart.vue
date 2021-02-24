@@ -4,12 +4,24 @@
   <img :src="item.Product.image_url" class="card-img-top" alt="...">
   <div class="card-body">
       <div class='m-2 d-flex justify-content-center'>
-    <p class="card-text">{{item.Product.name}}</p>
+    <p class="card-title">{{item.Product.name}}</p>
       </div>
+      <div class='m-2 d-flex justify-content-center'>
+      <p class="card-title">Total Price</p>
+      </div>
+      <div class='m-2 d-flex justify-content-center'>
+      <p class="card-title">Rp {{item.totalPrice}}</p>
+      </div>
+    <div class='m-2 d-flex justify-content-center'>
+    <p class="m-2 card-text">Quantity: {{item.amount}}</p>
+    </div>
     <div class='d-flex justify-content-center'>
-    <button type='button' class="m-2 btn btn-sm btn-secondary">-</button>
-    <p class="m-2 card-text">x{{item.amount}}</p>
-    <button type='button' class="m-2 btn btn-sm btn-secondary">+</button>
+      <form  action="">
+    <input v-model='input' type="number" >
+    <div class='m-2 d-flex justify-content-center'>
+    <button @click.prevent='addAmount' type='button' class="m-2 btn btn-sm btn-secondary">Update</button>
+    </div>
+      </form>
     </div>
     <div class='p-3 d-flex justify-content-center'>
     <button
@@ -29,8 +41,25 @@
 <script>
 export default {
   name: 'Cart',
-  props: ['item'],
+  data () {
+    return {
+      input: ''
+    }
+  },
+  props: ['item', 'product'],
   methods: {
+    addAmount () {
+      const obj = {
+        productId: this.item.productId,
+        amount: this.input,
+        totalPrice: this.item.Product.price
+      }
+      this.$store.dispatch('updateToCart', obj)
+      this.input = ''
+    },
+    subtractAmount () {
+      this.item.amount--
+    },
     deleteItem () {
       this.$store.dispatch('destroyCart', this.item.id)
     }
