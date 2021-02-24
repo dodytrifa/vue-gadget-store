@@ -12,8 +12,8 @@
 <div class='m-2 d-flex justify-content-center'>
     <p class="card-text">Stock: {{product.stock}}</p>
 </div>
-<div class='m-2 d-flex justify-content-center'>
-    <button @click='itemToCart(product)' type='button' class="btn btn-primary">Add to Cart</button>
+<div class='m-4 d-flex justify-content-center'>
+    <button @click='itemToCart(product)' type='button' class="btn btn-success rounded-pill">Add to Cart</button>
 </div>
   </div>
 </div>

@@ -4,22 +4,27 @@
   <img :src="item.Product.image_url" class="card-img-top" alt="...">
   <div class="card-body">
       <div class='m-2 d-flex justify-content-center'>
-    <p class="card-title">{{item.Product.name}}</p>
+    <h5 class="card-title">{{item.Product.name}}</h5>
       </div>
       <div class='m-2 d-flex justify-content-center'>
       <p class="card-title">Total Price</p>
       </div>
-      <div class='m-2 d-flex justify-content-center'>
+      <div class='m-1 d-flex justify-content-center'>
       <p class="card-title">Rp {{item.totalPrice}}</p>
       </div>
-    <div class='m-2 d-flex justify-content-center'>
-    <p class="m-2 card-text">Quantity: {{item.amount}}</p>
+    <div class='m-1 d-flex justify-content-center'>
+    <p class="card-text">*Type the amount</p>
     </div>
     <div class='d-flex justify-content-center'>
       <form  action="">
-    <input v-model='input' type="number" >
+      <div class='m-2 d-flex justify-content-center'>
+    <input v-model='input' class="w-50" type="number" >
+    </div>
     <div class='m-2 d-flex justify-content-center'>
-    <button @click.prevent='addAmount' type='button' class="m-2 btn btn-sm btn-secondary">Update</button>
+    <p class="m-2 card-text">Total Quantity: {{item.amount}}</p>
+    </div>
+    <div class='m-2 d-flex justify-content-center'>
+    <button @click.prevent='addAmount' type='button' class="m-2 btn btn-sm btn-secondary rounded-pill">Update</button>
     </div>
       </form>
     </div>
@@ -29,7 +34,7 @@
           class="margin-right-20 btn btn-sm btn-danger rounded-pill"
           type="button"
         >
-          Remove from Cart
+          Remove item
         </button>
     </div>
   </div>
